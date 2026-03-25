@@ -163,9 +163,41 @@ body {
         -0.55px 0.55px 0 var(--primary-red);
 }
 
+.brand-birthday {
+    font-size: 1.25em;
+}
+
+@media (max-width: 767px) {
+    .brand-title {
+        font-size: clamp(1rem, 2.8vw, 1.4rem);
+    }
+
+    .brand-line {
+        display: block;
+        line-height: 1.15;
+    }
+
+    .brand-line-1 {
+        font-size: 1rem;
+    }
+
+    .brand-line-2 {
+        font-size: 1.2rem;
+    }
+
+    .brand-line-3 {
+        font-size: 1rem;
+    }
+
+    .brand-line-1 .current-time {
+        font-size: 1.5rem;
+    }
+}
+
 @media (min-width: 768px) {
     .brand-title {
         margin-bottom: 0;
+        text-align: left;
         -webkit-text-stroke: 0.8px var(--text-white);
         text-shadow:
             1.5px 1.5px 0 var(--primary-red),
@@ -194,6 +226,12 @@ body {
 .nav-links a:hover, .nav-links a.active {
     color: var(--primary-red);
     border-bottom: 1px solid var(--primary-red);
+}
+
+@media (min-width: 768px) {
+    .nav-links a {
+        font-size: 0.9rem;
+    }
 }
 
 /* Gallery Grid (CSS Masonry) */
