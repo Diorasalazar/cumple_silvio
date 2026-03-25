@@ -99,6 +99,37 @@ body {
     border-bottom: 1px solid rgba(204, 0, 0, 0.2);
 }
 
+.dedication-card {
+    background-color: #111;
+    border: 1px solid rgba(204, 0, 0, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    padding: 1.4rem;
+    margin-bottom: 2rem;
+    color: #f1f1f1;
+}
+
+.dedication-card p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.dedication-card img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dedication-note {
+    font-weight: 600;
+    color: var(--primary-red);
+    margin-top: 0.75rem;
+}
+
 @media (min-width: 768px) {
     .navbar {
         flex-direction: row;
