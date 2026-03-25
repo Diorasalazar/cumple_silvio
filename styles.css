@@ -167,30 +167,18 @@ body {
     font-size: 1.25em;
 }
 
+.brand-line {
+    display: block;
+    line-height: 1.15;
+}
+
 @media (max-width: 767px) {
     .brand-title {
         font-size: clamp(1rem, 2.8vw, 1.4rem);
     }
 
-    .brand-line {
-        display: block;
-        line-height: 1.15;
-    }
-
-    .brand-line-1 {
-        font-size: 1rem;
-    }
-
-    .brand-line-2 {
-        font-size: 1.2rem;
-    }
-
-    .brand-line-3 {
-        font-size: 1rem;
-    }
-
-    .brand-line-1 .current-time {
-        font-size: 1.5rem;
+    .brand-birthday {
+        font-size: 1em;
     }
 }
 
