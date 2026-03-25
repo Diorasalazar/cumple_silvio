@@ -164,8 +164,21 @@ body {
 }
 
 @media (max-width: 767px) {
+    .navbar {
+        align-items: center;
+    }
+
     .brand-title {
         font-size: clamp(1rem, 2.8vw, 1.4rem);
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
     }
 
     .title-tail {
