@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diane, 11:30 AM. Entering Silvio's website to celebrate a damn fine birthday | Cartas</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=2">
+    <style>
+        /* Lock Screen */
+        .lock-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .lock-screen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(204,0,0,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(204,0,0,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .lock-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 5vw, 3rem);
+            color: #fff;
+            font-style: italic;
+            text-align: center;
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+        }
+
+        .lock-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(161,161,170,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            text-align: center;
+        }
+
+        .lock-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .lock-input {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(204,0,0,0.3);
+            border-radius: 2px;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .lock-input::placeholder {
+            color: rgba(161,161,170,0.4);
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+        }
+
+        .lock-input:focus {
+            border-color: rgba(204,0,0,0.7);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .lock-btn {
+            background: transparent;
+            border: 1px solid rgba(204,0,0,0.5);
+            color: #CC0000;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            padding: 0.7rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lock-btn:hover {
+            background: rgba(204,0,0,0.1);
+            border-color: #CC0000;
+            box-shadow: 0 0 20px rgba(204,0,0,0.3);
+        }
+
+        .lock-error {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: #CC0000;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            min-height: 1.4em;
+        }
+
+        .lock-error.visible {
+            opacity: 1;
+        }
+
+        .lock-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(204,0,0,0.3);
+        }
+
+        /* Hidden content until unlocked */
+        .cartas-content {
+            display: none;
+        }
+
+        .cartas-content.unlocked {
+            display: block;
+        }
+
+        /* Letter Cards */
+        .cartas-grid {
+            column-count: 1;
+            column-gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .cartas-grid {
+                column-count: 2;
+                column-gap: 3rem;
+            }
+        }
+
+        .carta-card {
+            background: rgba(20,20,20,0.9);
+            border: 1px solid rgba(204,0,0,0.12);
+            border-radius: 4px;
+            padding: 2rem;
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .carta-card:hover {
+            border-color: rgba(204,0,0,0.35);
+        }
+
+        .carta-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: #fff;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            white-space: pre-wrap;
+        }
+
+        .carta-author {
+            font-family: 'Oswald', sans-serif;
+            color: rgba(161,161,170,0.8);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .cartas-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cartas-intro h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .cartas-intro p {
+            color: #CC0000;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top & Bottom Cinematic Glows -->
+    <div class="glow-top"></div>
+    <div class="glow-bottom"></div>
+
+    <!-- Red Velvet Curtains -->
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <!-- Lock Screen -->
+    <div class="lock-screen" id="lock-screen">
+        <p class="lock-subtitle">Acceso restringido</p>
+        <div class="lock-divider"></div>
+        <h1 class="lock-title">Descubre el misterio</h1>
+        <div class="lock-form">
+            <input
+                type="password"
+                id="lock-input"
+                class="lock-input"
+                placeholder="ingresa la clave"
+                autocomplete="off"
+            >
+            <div class="lock-error" id="lock-error">La clave no es correcta.</div>
+            <button class="lock-btn" id="lock-btn">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Main Container (hidden until unlocked) -->
+    <div class="main-container cartas-content" id="cartas-content">
+        <!-- Header -->
+        <header class="navbar">
+            <a href="index.html" class="brand-title">Diane, <span class="current-time">11:30 AM</span>. Entering Silvio's website to celebrate a damn fine birthday</a>
+            <nav class="nav-links">
+                <a href="index.html">GALERÍA</a>
+                <a href="mensajes.html">DEDICATORIAS</a>
+                <a href="cartas.html" class="active">CARTAS</a>
+            </nav>
+        </header>
+
+        <!-- Cartas Content -->
+        <main>
+            <div class="cartas-intro">
+                <h1>Palabras que solo te pertenecen</h1>
+                <p>Con amor, los tuyos</p>
+            </div>
+
+            <div class="cartas-grid" id="cartas-grid">
+
+                <!-- Agrega cartas aquí — ejemplo: -->
+                <div class="carta-card">
+                    <p class="carta-text">Aquí va el primer mensaje privado para Silvio. Puedes reemplazarlo con el texto real.</p>
+                    <p class="carta-author">— Nombre</p>
+                </div>
+
+                <!-- Carta 2 -->
+                <div class="carta-card">
+                    <p class="carta-text">Aquí va otro mensaje. Puedes agregar tantas cartas como quieras.</p>
+                    <p class="carta-author">— Otro nombre</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+    <script>
+        const PASSWORD = 'elpericoenelconuco';
+        const lockScreen = document.getElementById('lock-screen');
+        const cartasContent = document.getElementById('cartas-content');
+        const lockInput = document.getElementById('lock-input');
+        const lockBtn = document.getElementById('lock-btn');
+        const lockError = document.getElementById('lock-error');
+
+        function tryUnlock() {
+            if (lockInput.value === PASSWORD) {
+                lockScreen.style.opacity = '0';
+                lockScreen.style.transition = 'opacity 0.6s ease';
+                setTimeout(() => {
+                    lockScreen.style.display = 'none';
+                    cartasContent.classList.add('unlocked');
+                }, 600);
+                sessionStorage.setItem('cartas_unlocked', '1');
+            } else {
+                lockError.classList.add('visible');
+                lockInput.value = '';
+                lockInput.style.borderColor = '#CC0000';
+                lockInput.style.boxShadow = '0 0 15px rgba(204,0,0,0.3)';
+                setTimeout(() => {
+                    lockError.classList.remove('visible');
+                    lockInput.style.borderColor = '';
+                    lockInput.style.boxShadow = '';
+                }, 2500);
+            }
+        }
+
+        // Si ya lo desbloqueó en esta sesión, no pedir clave de nuevo
+        if (sessionStorage.getItem('cartas_unlocked') === '1') {
+            lockScreen.style.display = 'none';
+            cartasContent.classList.add('unlocked');
+        }
+
+        lockBtn.addEventListener('click', tryUnlock);
+        lockInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') tryUnlock();
+        });
+    </script>
+</body>
+</html>
