@@ -107,11 +107,14 @@ body {
     padding: 1.4rem;
     margin-bottom: 2rem;
     color: #f1f1f1;
+    text-align: left;
 }
 
 .dedication-card p {
     margin-bottom: 1rem;
     line-height: 1.7;
+    font-family: 'Slabo 27px', serif;
+    font-style: italic;
 }
 
 .dedication-card img {
@@ -126,8 +129,11 @@ body {
 
 .dedication-note {
     font-weight: 600;
-    color: var(--primary-red);
+    color: #f1f1f1;
     margin-top: 0.75rem;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-style: italic;
+    font-size: 1.2rem;
 }
 
 @media (min-width: 768px) {
