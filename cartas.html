@@ -259,7 +259,7 @@
                 <p>Mientras escribo esto, hay miles de personas concentrándose en la Plaza de Mayo para honrar juntos el día nacional de la Memoria por la Verdad y la Justicia, a los 50 años del inicio de la última y más dura dictadura en Argentina. Por razones obvias y otras personales, me gusta mucho leer del tema, y en eso, empaparme de las películas que se hicieron al respecto, fantasear con que algún día nos toque, se nos concedan la verdad, los juicios y la libertad.</p>
                 <p>Fantaseo con que a cargo de preservar esa memoria quede gente como tú. Que los registros y parte de la filmografía de nuestro país tengan tu forma de apreciar todo lo que tenemos para contar en la intimidad, la fuente inagotable de relatos, particularidades e historia que tenemos. Me haría sentir segura que sigas estando ahí para reconstruir la memoria y representarnos en los detalles.</p>
                 <p>Gracias, amigo, por acompañarme, ayudarme a buscar soluciones, completar mi chiste, mostrarme cosas nuevas. ¡Felices 30 años! Mucha más vida para ti, que te alcance para todo lo que quieras hacer y más.</p>
-                <img src="assets/images/photoc1.webp" alt="Pasted image for card" onerror="this.src='https://placehold.co/800x450/111/444?text=Imagen+Pegada'">
+                <img src="assets/images/photoc1.webp" alt="Pasted image for card" class="message-image" onerror="this.src='https://placehold.co/800x450/111/444?text=Imagen+Pegada'">
                 <p class="dedication-note">Nosotros, dependiendo del día cambiamos de posición. Hoy te dejo ser Lynch.</p>
                 <p>— Val</p>
             </div>
@@ -270,6 +270,12 @@
 
             </div>
         </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Photo">
     </div>
 
     <!-- Custom Scripts -->
@@ -313,6 +319,30 @@
         lockBtn.addEventListener('click', tryUnlock);
         lockInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') tryUnlock();
+        });
+    </script>
+
+    <script>
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        document.querySelectorAll('.message-image').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
         });
     </script>
 </body>

@@ -93,7 +93,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 0.25rem 0;
+    padding: 0.5rem 0;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid rgba(204, 0, 0, 0.2);
     position: relative;
@@ -140,6 +140,7 @@ body {
 @media (min-width: 768px) {
     .navbar {
         flex-direction: row;
+        border-bottom: 2px solid rgba(204, 0, 0, 0.3);
     }
 }
 
@@ -165,6 +166,11 @@ body {
 @media (min-width: 768px) {
     .brand-title {
         margin-bottom: 0;
+        text-shadow:
+            1.5px 1.5px 0 var(--primary-red),
+            -1.5px -1.5px 0 var(--primary-red),
+            1.5px -1.5px 0 var(--primary-red),
+            -1.5px 1.5px 0 var(--primary-red);
     }
 }
 
@@ -388,6 +394,12 @@ body {
     margin-bottom: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+}
+
+@media (max-width: 767px) {
+    .dedications-title {
+        font-size: 1.2rem;
+    }
 }
 
 .dedication-item {
